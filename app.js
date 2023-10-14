@@ -2,12 +2,13 @@ const express = require('express');
 const app = express();
 
 const tasks = require('./routes/tasks.js');
+require('./db/connect.js');
 
 //--  Middlewares  --\\
 app.use(express.json());
 app.use(express.urlencoded({ extended:false }));
 
-//-- routes  --\\
+//--  Routes  --\\
 app.use('/api/v1/tasks', tasks);
 
 //--  Listener  --\\
