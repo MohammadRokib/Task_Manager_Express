@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
 
-const connectionString = process.env.MONGO_URI;
+const connectDB = url => {
+    return mongoose.connect(url, {
+            useNewUrlParser: true,    // to disable deprecation messages in log
+            useCreateIndex: true,     // to disable deprecation messages in log
+            useFindAndModify: false,  // to disable deprecation messages in log
+            useUnifiedTopology: true, // to disable deprecation messages in log
+        });
+};
 
-mongoose
-    .connect(connectionString)
-    .then(() => console.log('Connected to the database'))
-    .catch((err) => console.log(err));
+module.exports = connectDB;
