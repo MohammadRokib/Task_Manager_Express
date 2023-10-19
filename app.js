@@ -4,6 +4,7 @@ const app = express();
 const tasks = require('./routes/tasks.js');
 const connectDB = require('./db/connect.js');
 const notFound = require('./middlewares/not-found.js');
+const errorHandlerMiddleware = require('./middlewares/error-handler.js');
 require('dotenv').config();
 
 //--  Middlewares  --\\
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended:false }));
 
 //--  Routes  --\\
 app.use('/api/v1/tasks', tasks);
+app.use(errorHandlerMiddleware);
 app.use(notFound);
 
 //--  Listener  --\\
